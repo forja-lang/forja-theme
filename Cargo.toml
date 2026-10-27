@@ -1,6 +1,6 @@
 [package]
 name = "forja-theme"
-version = "0.1.0"
+version = "0.9.3"
 edition = "2021"
 description = "Sistema de tema Material You (Material 3) para Forja GUI — colores dinámicos, tipografía, formas, elevación y animación, sin dependencias de xilem ni forja"
 license = "MIT"
