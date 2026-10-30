@@ -20,6 +20,8 @@ pub struct ShapeSystem {
     pub extra_large: f64,
     /// Completo (-1.0 representa 50% para formas circulares)
     pub full: f64,
+    /// Radio de botones (20dp Material, 4dp Fluent, 24dp Liquid Glass)
+    pub button: f64,
 }
 
 impl ShapeSystem {
@@ -33,6 +35,7 @@ impl ShapeSystem {
             large: 16.0,
             extra_large: 28.0,
             full: -1.0, // -1.0 representa 50%
+            button: 20.0,
         }
     }
 
@@ -41,7 +44,7 @@ impl ShapeSystem {
         match family {
             ShapeFamily::Surface => self.small,
             ShapeFamily::Container => self.medium,
-            ShapeFamily::Button => 20.0,
+            ShapeFamily::Button => self.button,
             ShapeFamily::Navigation => self.none,
             ShapeFamily::Badge => self.small,
             ShapeFamily::Fab => self.large,
@@ -87,22 +90,24 @@ impl ShapeFamily {
 /// Crea un CornerRadius de Xilem/Masonry a partir de un radio uniforme
 #[cfg(feature = "xilem")]
 pub fn corner_radius(radius: f64) -> xilem::masonry::properties::CornerRadius {
-    xilem::masonry::properties::CornerRadius::all(radius)
+    use xilem::masonry::layout::AsUnit as _;
+    xilem::masonry::properties::CornerRadius::all(radius.px())
 }
 
 /// Crea un CornerRadius asimétrico (usa el promedio de las 4 esquinas como radio uniforme)
 ///
-/// NOTA: Xilem 0.4 / Masonry 0.4 solo soporta CornerRadius uniforme.
+/// NOTA: Xilem/Masonry solo soporta CornerRadius uniforme.
 /// Los valores individuales están disponibles para uso futuro.
 #[cfg(feature = "xilem")]
 pub fn corner_radius_asymmetric(
-    _top_left: f64,
-    _top_right: f64,
-    _bottom_right: f64,
-    _bottom_left: f64,
+    top_left: f64,
+    top_right: f64,
+    bottom_right: f64,
+    bottom_left: f64,
 ) -> xilem::masonry::properties::CornerRadius {
-    let avg = (_top_left + _top_right + _bottom_right + _bottom_left) / 4.0;
-    xilem::masonry::properties::CornerRadius::all(avg)
+    use xilem::masonry::layout::AsUnit as _;
+    let avg = (top_left + top_right + bottom_right + bottom_left) / 4.0;
+    xilem::masonry::properties::CornerRadius::all(avg.px())
 }
 
 #[cfg(test)]
@@ -133,6 +138,6 @@ mod tests {
     #[test]
     fn test_corner_radius() {
         let radius = corner_radius(8.0);
-        assert!((radius.radius - 8.0).abs() < 0.01);
+        assert!((radius.radius.get() - 8.0).abs() < 0.01);
     }
 }
