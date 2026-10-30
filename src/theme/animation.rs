@@ -474,8 +474,8 @@ impl AnimationPresets {
 ///
 /// # Ejemplo
 /// ```
-/// use forja_gui_rt::theme::color::RgbColor;
-/// use forja_gui_rt::theme::animation::interpolate_color;
+/// use forja_theme::theme::color::RgbColor;
+/// use forja_theme::theme::animation::interpolate_color;
 ///
 /// let negro = RgbColor(0, 0, 0);
 /// let blanco = RgbColor(255, 255, 255);
