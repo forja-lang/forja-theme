@@ -136,6 +136,7 @@ mod tests {
     }
 
     #[test]
+    #[cfg(feature = "xilem")]
     fn test_corner_radius() {
         let radius = corner_radius(8.0);
         assert!((radius.radius.get() - 8.0).abs() < 0.01);
