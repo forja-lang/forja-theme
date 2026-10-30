@@ -23,9 +23,9 @@ pub struct StateLayer {
     pub overlay_color: RgbColor,
 }
 
-impl StateLayer {
+impl Default for StateLayer {
     /// Capa de estado por defecto (overlay color = on-surface oscuro)
-    pub fn default() -> Self {
+    fn default() -> Self {
         StateLayer {
             hover_opacity: 0.08,
             focus_opacity: 0.12,
@@ -35,7 +35,9 @@ impl StateLayer {
             overlay_color: RgbColor(28, 27, 31), // on-surface
         }
     }
+}
 
+impl StateLayer {
     /// Capa de estado para superficies claras (overlay color = on-surface claro)
     pub fn on_surface_light() -> Self {
         StateLayer {

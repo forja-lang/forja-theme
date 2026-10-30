@@ -107,9 +107,9 @@ pub struct Durations {
     pub duration_500: f64,
 }
 
-impl Durations {
+impl Default for Durations {
     /// Duraciones por defecto de Material You
-    pub fn default() -> Self {
+    fn default() -> Self {
         Durations {
             duration_50: 50.0,
             duration_100: 100.0,
@@ -122,7 +122,9 @@ impl Durations {
             duration_500: 500.0,
         }
     }
+}
 
+impl Durations {
     /// Obtiene una duración por nombre
     pub fn get(&self, name: &str) -> f64 {
         match name {
@@ -155,9 +157,9 @@ pub struct Easings {
     pub expressive: EasingCurve,
 }
 
-impl Easings {
+impl Default for Easings {
     /// Curvas de easing por defecto de Material You
-    pub fn default() -> Self {
+    fn default() -> Self {
         Easings {
             standard: EASE_STANDARD,
             emphasized: EASE_EMPHASIZED,
@@ -166,7 +168,9 @@ impl Easings {
             expressive: EASE_EXPRESSIVE,
         }
     }
+}
 
+impl Easings {
     /// Obtiene una curva de easing por nombre
     pub fn get(&self, name: &str) -> &EasingCurve {
         match name {
@@ -189,15 +193,17 @@ pub struct MotionSystem {
     pub easings: Easings,
 }
 
-impl MotionSystem {
+impl Default for MotionSystem {
     /// Sistema de movimiento por defecto
-    pub fn default() -> Self {
+    fn default() -> Self {
         MotionSystem {
             durations: Durations::default(),
             easings: Easings::default(),
         }
     }
+}
 
+impl MotionSystem {
     /// Sistema de movimiento con easing expresivo (overshoot)
     pub fn expressive() -> Self {
         MotionSystem {
@@ -293,7 +299,7 @@ mod tests {
     fn test_easing_apply() {
         // Standard: t debería estar entre 0 y 1
         let result = EASE_STANDARD.apply(0.5);
-        assert!(result >= 0.0 && result <= 1.0, "result = {}", result);
+        assert!((0.0..=1.0).contains(&result), "result = {}", result);
 
         // Decelerate: t=1.0 debe dar 1.0
         let result = EASE_DECELERATE.apply(1.0);

@@ -24,9 +24,9 @@ pub struct ShapeSystem {
     pub button: f64,
 }
 
-impl ShapeSystem {
+impl Default for ShapeSystem {
     /// Valores por defecto de Material You
-    pub fn default() -> Self {
+    fn default() -> Self {
         ShapeSystem {
             none: 0.0,
             extra_small: 4.0,
@@ -38,7 +38,9 @@ impl ShapeSystem {
             button: 20.0,
         }
     }
+}
 
+impl ShapeSystem {
     /// Obtiene el radio para una familia de componentes
     pub fn for_family(&self, family: ShapeFamily) -> f64 {
         match family {

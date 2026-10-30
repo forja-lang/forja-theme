@@ -44,7 +44,7 @@ fn windows_detect() -> SystemTheme {
     //   HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize
     //   AppsUseLightTheme: 0 = dark, 1 = light
     let output = std::process::Command::new("reg")
-        .args(&[
+        .args([
             "query",
             r"HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize",
             "/v",

@@ -22,9 +22,9 @@ pub struct ElevationSystem {
     pub level5: f64,
 }
 
-impl ElevationSystem {
+impl Default for ElevationSystem {
     /// Valores por defecto de Material You
-    pub fn default() -> Self {
+    fn default() -> Self {
         ElevationSystem {
             level0: 0.0,
             level1: 1.0,
@@ -34,7 +34,9 @@ impl ElevationSystem {
             level5: 12.0,
         }
     }
+}
 
+impl ElevationSystem {
     /// Obtiene el valor en dp para un nivel (0-5)
     pub fn get(&self, level: u8) -> f64 {
         match level {

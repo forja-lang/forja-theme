@@ -88,9 +88,9 @@ pub struct TypeScale {
     pub label_small: TextStyle,
 }
 
-impl TypeScale {
+impl Default for TypeScale {
     /// Escala tipográfica por defecto de Material You
-    pub fn default() -> Self {
+    fn default() -> Self {
         TypeScale {
             // Display
             display_large: TextStyle::new(57.0, 64.0, -0.25, FontWeight::Regular),
@@ -114,7 +114,9 @@ impl TypeScale {
             label_small: TextStyle::new(11.0, 16.0, 0.5, FontWeight::Medium),
         }
     }
+}
 
+impl TypeScale {
     /// Busca un estilo por nombre ("display_large", "body_medium", etc.)
     pub fn apply(&self, style_name: &str) -> &TextStyle {
         match style_name {
