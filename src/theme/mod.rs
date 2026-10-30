@@ -387,12 +387,18 @@ mod tests {
 
     #[test]
     fn test_named() {
-        assert_eq!(MaterialTheme::named("fluent", false).design, DesignStyle::Fluent);
+        assert_eq!(
+            MaterialTheme::named("fluent", false).design,
+            DesignStyle::Fluent
+        );
         assert_eq!(
             MaterialTheme::named("liquid_glass", false).design,
             DesignStyle::LiquidGlass
         );
-        assert_eq!(MaterialTheme::named("vidrio", false).design, DesignStyle::LiquidGlass);
+        assert_eq!(
+            MaterialTheme::named("vidrio", false).design,
+            DesignStyle::LiquidGlass
+        );
         let oscuro = MaterialTheme::named("fluent:dark", false);
         assert!(oscuro.is_dark);
         assert_eq!(oscuro.design, DesignStyle::Fluent);
