@@ -4,6 +4,7 @@
 // Provee colores dinámicos (HCT), esquemas de color, tipografía, formas,
 // elevación, movimiento y animación. `forja-gui-rt` lo re-exporta para
 // preservar la API pública histórica (`forja_gui_rt::theme::*`).
+#![allow(rustdoc::broken_intra_doc_links, rustdoc::invalid_html_tags)]
 #![forbid(unsafe_code)]
 
 pub mod theme;
